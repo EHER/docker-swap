@@ -7,3 +7,4 @@ enableswap:
         - "SWAPPINESS=10"
     volumes:
         - /swapfile:/swapfile:rw
+        - /proc/partitions:/proc/partitions
