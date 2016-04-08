@@ -1,4 +1,4 @@
-authorizedkeys:
+enableswap:
     image: eher/docker-swap
     deployment_strategy: every_node
     autodestroy: always
