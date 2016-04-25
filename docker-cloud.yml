@@ -6,5 +6,5 @@ enableswap:
         - "SWAP_SIZE_IN_GB=4"
         - "SWAPPINESS=10"
     volumes:
-        - /swapfile:/swapfile:rw
-        - /proc/partitions:/proc/partitions
+        - /var/swap:/var/swap:rw
+        - /proc/partitions:/proc/partitions:rw
