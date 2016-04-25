@@ -6,4 +6,4 @@ enableswap:
         - "SWAP_SIZE_IN_GB=4"
         - "SWAPPINESS=10"
     volumes:
-        - /var/swap:/var/swap:rw
+        - /root:/user:rw
