@@ -13,9 +13,9 @@ if [ "${SWAP_SIZE_IN_GB}" != "**None**"  ]; then
     echo "=> Creating swap on ${DOCKER_HOST}"
 
     ssh root@$DOCKER_HOST -i /user/.ssh/id_rsa fallocate -l ${SWAP_SIZE_IN_GB}G /swapfile
-    ssh root@$DOCKER_HOST -i /user/.ssh/id_rsa hmod 600 /swapfile
-    ssh root@$DOCKER_HOST -i /user/.ssh/id_rsa kswap /swapfile
-    ssh root@$DOCKER_HOST -i /user/.ssh/id_rsa wapon /swapfile
+    ssh root@$DOCKER_HOST -i /user/.ssh/id_rsa chmod 600 /swapfile
+    ssh root@$DOCKER_HOST -i /user/.ssh/id_rsa mkswap /swapfile
+    ssh root@$DOCKER_HOST -i /user/.ssh/id_rsa swapon /swapfile
 
     echo "=> Setting swappiness on ${DOCKER_HOST}"
     ssh root@$DOCKER_HOST -i /user/.ssh/id_rsa ysctl vm.swappiness=${SWAPPINESS}
