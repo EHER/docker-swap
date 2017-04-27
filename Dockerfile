@@ -1,4 +1,7 @@
 FROM alpine
+RUN apk update && \
+    apk add openssh && \
+    rm -rf /var/cache/apk/*
 ADD run.sh /
 RUN chmod +x /run.sh
 ENV SWAPPINESS 10
