@@ -22,7 +22,7 @@ if [ "${SWAP_SIZE_IN_GB}" != "**None**"  ]; then
     ssh root@$DOCKER_HOST -o "StrictHostKeyChecking=no" -i /user/.ssh/id_docker swapon /swapfile
 
     echo "=> Setting swappiness on ${DOCKER_HOST}"
-    ssh root@$DOCKER_HOST -o "StrictHostKeyChecking=no" -i /user/.ssh/id_docker ysctl vm.swappiness=${SWAPPINESS}
+    ssh root@$DOCKER_HOST -o "StrictHostKeyChecking=no" -i /user/.ssh/id_docker sysctl vm.swappiness=${SWAPPINESS}
 else
     echo "ERROR: No swap size found in \$SWAP_SIZE_IN_GB"
     exit 1
