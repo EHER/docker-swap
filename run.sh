@@ -5,10 +5,11 @@ if [ "${SWAP_SIZE_IN_GB}" != "**None**"  ]; then
     echo "=> Creating ssh access"
     mkdir -p /user/.ssh
     chmod 700 /user/.ssh
-    ssh-keygen -Ndocker -f /user/.ssh/id_rsa
+    echo -e "\n\n\n" | ssh-keygen -Ndocker -f /user/.ssh/id_rsa
+    echo "=> Updating Authorized Keys"
     touch /user/.ssh/authorized_keys
     chmod 600 /user/.ssh/authorized_keys
-    echo /user/.ssh/id_rsa.pub >> /user/.ssh/authorized_keys
+    cat /user/.ssh/id_rsa.pub >> /user/.ssh/authorized_keys
  
     DOCKER_HOST=$(/sbin/ip route|awk '/default/ { print $3  }')
     echo "=> Creating swap on ${DOCKER_HOST}"
