@@ -6,7 +6,7 @@ if [ "${SWAP_SIZE_IN_GB}" != "**None**"  ]; then
     mkdir -p /user/.ssh
     chmod 700 /user/.ssh
     if [ ! -f /user/.ssh/id_docker ]; then
-        echo -e "\n\n\n" | ssh-keygen -Ndocker -f /user/.ssh/id_docker
+        echo -e "\n\n\n" | ssh-keygen -f /user/.ssh/id_docker
         echo "=> Updating Authorized Keys"
         touch /user/.ssh/authorized_keys
         chmod 600 /user/.ssh/authorized_keys
