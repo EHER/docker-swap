@@ -16,13 +16,13 @@ if [ "${SWAP_SIZE_IN_GB}" != "**None**"  ]; then
     DOCKER_HOST=$(/sbin/ip route|awk '/default/ { print $3  }')
     echo "=> Creating swap on ${DOCKER_HOST}"
 
-    echo -e "yes" | ssh root@$DOCKER_HOST -i /user/.ssh/id_docker fallocate -l ${SWAP_SIZE_IN_GB}G /swapfile
-    echo -e "yes" | ssh root@$DOCKER_HOST -i /user/.ssh/id_docker chmod 600 /swapfile
-    echo -e "yes" | ssh root@$DOCKER_HOST -i /user/.ssh/id_docker mkswap /swapfile
-    echo -e "yes" | ssh root@$DOCKER_HOST -i /user/.ssh/id_docker swapon /swapfile
+    ssh root@$DOCKER_HOST -o "StrictHostKeyChecking=no" -i /user/.ssh/id_docker fallocate -l ${SWAP_SIZE_IN_GB}G /swapfile
+    ssh root@$DOCKER_HOST -o "StrictHostKeyChecking=no" -i /user/.ssh/id_docker chmod 600 /swapfile
+    ssh root@$DOCKER_HOST -o "StrictHostKeyChecking=no" -i /user/.ssh/id_docker mkswap /swapfile
+    ssh root@$DOCKER_HOST -o "StrictHostKeyChecking=no" -i /user/.ssh/id_docker swapon /swapfile
 
     echo "=> Setting swappiness on ${DOCKER_HOST}"
-    echo -e "yes" | ssh root@$DOCKER_HOST -i /user/.ssh/id_docker ysctl vm.swappiness=${SWAPPINESS}
+    ssh root@$DOCKER_HOST -o "StrictHostKeyChecking=no" -i /user/.ssh/id_docker ysctl vm.swappiness=${SWAPPINESS}
 else
     echo "ERROR: No swap size found in \$SWAP_SIZE_IN_GB"
     exit 1
